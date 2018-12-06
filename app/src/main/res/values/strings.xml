@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Personajes</string>
+    <string name="accesorios">Añadir</string>
+    <string name="arma">Arma</string>
+    <string name="montura">Montura</string>
+    <string name="escudo">Escudo</string>
+    <string name="boton">Construir</string>
+</resources>
