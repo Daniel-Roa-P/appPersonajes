@@ -1,5 +1,6 @@
-package com.example.danbr.personajes;
+package com.example.danbr.personajes.Main;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +10,22 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.danbr.personajes.Builder.ConstructorElfo;
+import com.example.danbr.personajes.Builder.ConstructorHumano;
+import com.example.danbr.personajes.Builder.ConstructorOrco;
+import com.example.danbr.personajes.R;
+import com.example.danbr.personajes.Builder.Director;
+import com.example.danbr.personajes.Builder.Personaje;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private Button boton;
     private CheckBox arma,escudo,montura;
     private ImageView imagen;
+    private Director director = new Director();
+    private Personaje personaje =new Personaje();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +45,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 if(spinner.getSelectedItem().equals("Elfo")){
 
-                    imagen.setImageResource(R.mipmap.elfo2);
+                    director.setConstructor(new ConstructorElfo());
 
                 }   else if(spinner.getSelectedItem().equals("Humano")){
 
-                    imagen.setImageResource(R.mipmap.hombre2);
+                    director.setConstructor(new ConstructorHumano());
 
                 }   else if(spinner.getSelectedItem().equals("Orco")){
 
-                    imagen.setImageResource(R.mipmap.cosaverde2);
+                    director.setConstructor(new ConstructorOrco());;
 
                 }
+
+                director.construirPersonaje();
+                personaje=director.getPersonaje();
 
                 if(arma.isChecked()==true){
 
@@ -67,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+                int idImagen=getResources().getIdentifier("com.example.danbr.personajes:mipmap/"+personaje.getConjunto(),null,null);
 
+                imagen.setImageResource(idImagen);
 
             }
         });
