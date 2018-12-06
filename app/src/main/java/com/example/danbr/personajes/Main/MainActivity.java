@@ -45,45 +45,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(spinner.getSelectedItem().equals("Elfo")){
+             if(spinner.getSelectedItem().equals("Elfo") || spinner.getSelectedItem().equals("Humano") || spinner.getSelectedItem().equals("Orco")) {
 
-                    director.setConstructor(new ConstructorElfo());
+                 if (spinner.getSelectedItem().equals("Elfo")) {
 
-                }   else if(spinner.getSelectedItem().equals("Humano")){
+                     director.setConstructor(new ConstructorElfo());
 
-                    director.setConstructor(new ConstructorHumano());
+                 } else if (spinner.getSelectedItem().equals("Humano")) {
 
-                }   else if(spinner.getSelectedItem().equals("Orco")){
+                     director.setConstructor(new ConstructorHumano());
 
-                    director.setConstructor(new ConstructorOrco());;
+                 } else if (spinner.getSelectedItem().equals("Orco")) {
 
-                }
+                     director.setConstructor(new ConstructorOrco());
+                     ;
 
-                director.construirPersonaje();
-                personaje=director.getPersonaje();
+                 }
 
-                if(arma.isChecked()==true){
+                 director.construirPersonaje();
+                 personaje = director.getPersonaje();
 
-                    System.out.println("Arma confirmada");
+                 if (arma.isChecked() == true) {
 
-                }
+                     director.añadirArma();
 
-                if(montura.isChecked()==true){
+                 }
 
-                    System.out.println("montura confirmado");
+                 if (montura.isChecked() == true) {
 
-                }
+                     director.añadirMontura();
 
-                if(escudo.isChecked()==true){
+                 }
 
-                    System.out.println("escudo confirmado");
+                 if (escudo.isChecked() == true) {
 
-                }
+                     director.añadirEscudo();
 
-                int idImagen=getResources().getIdentifier("com.example.danbr.personajes:mipmap/"+personaje.getConjunto(),null,null);
+                 }
 
-                imagen.setImageResource(idImagen);
+                 int idImagen = getResources().getIdentifier("com.example.danbr.personajes:mipmap/" + personaje.getConjunto(), null, null);
 
+                 imagen.setImageResource(idImagen);
+
+             }
             }
         });
 
